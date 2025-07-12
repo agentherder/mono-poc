@@ -1,0 +1,10 @@
+{
+  "name": "@agentherder-mono-poc/web-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@agentherder-mono-poc/web"
+    ]
+  }
+}
