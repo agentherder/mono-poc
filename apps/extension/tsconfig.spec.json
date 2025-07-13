@@ -18,14 +18,8 @@
     "vite.config.mts",
     "vitest.config.ts",
     "vitest.config.mts",
-    "entrypoints/**/*.test.ts",
     "entrypoints/**/*.spec.ts",
-    "entrypoints/**/*.test.tsx",
     "entrypoints/**/*.spec.tsx",
-    "entrypoints/**/*.test.js",
-    "entrypoints/**/*.spec.js",
-    "entrypoints/**/*.test.jsx",
-    "entrypoints/**/*.spec.jsx",
     "entrypoints/**/*.d.ts"
   ],
   "references": [
