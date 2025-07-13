@@ -8,6 +8,12 @@
     },
     {
       "path": "./apps/web"
+    },
+    {
+      "path": "./apps/extension-e2e"
+    },
+    {
+      "path": "./apps/extension"
     }
   ]
 }
