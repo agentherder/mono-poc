@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
+import { toggleSidePanel } from '../../utils/sidepanel';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -7,6 +8,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <div>Hello popup!</div>
+    <div className="flex flex-col gap-4 p-4">
+      <div>Hello popup!</div>
+      <button onClick={toggleSidePanel}>Toggle Sidepanel</button>
+    </div>
   </StrictMode>
 );
