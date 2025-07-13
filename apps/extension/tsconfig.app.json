@@ -19,11 +19,7 @@
     "entrypoints/**/*.spec.ts",
     "entrypoints/**/*.spec.tsx",
     "vite.config.ts",
-    "vite.config.mts",
     "vitest.config.ts",
-    "vitest.config.mts",
-    "eslint.config.js",
-    "eslint.config.cjs",
     "eslint.config.mjs"
   ],
   "include": ["entrypoints/**/*.ts", "entrypoints/**/*.tsx", ".wxt/wxt.d.ts"]

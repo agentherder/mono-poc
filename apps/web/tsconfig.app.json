@@ -24,13 +24,9 @@
     "out-tsc",
     "dist",
     "vite.config.ts",
-    "vite.config.mts",
     "vitest.config.ts",
-    "vitest.config.mts",
     "src/**/*.spec.ts",
     "src/**/*.spec.tsx",
-    "eslint.config.js",
-    "eslint.config.cjs",
     "eslint.config.mjs"
   ]
 }
