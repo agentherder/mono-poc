@@ -16,9 +16,9 @@
   "include": [
     "vite.config.ts",
     "vitest.config.ts",
-    "entrypoints/**/*.spec.ts",
-    "entrypoints/**/*.spec.tsx",
-    "entrypoints/**/*.d.ts"
+    "src/entrypoints/**/*.spec.ts",
+    "src/entrypoints/**/*.spec.tsx",
+    "src/entrypoints/**/*.d.ts"
   ],
   "references": [
     {

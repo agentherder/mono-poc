@@ -11,16 +11,16 @@
       "@nx/react/typings/image.d.ts",
       "chrome"
     ],
-    "rootDir": "entrypoints"
+    "rootDir": "src"
   },
   "exclude": [
-    "out-tsc",
-    "dist",
-    "entrypoints/**/*.spec.ts",
-    "entrypoints/**/*.spec.tsx",
+    ".output",
+    ".wxt",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx",
     "vite.config.ts",
     "vitest.config.ts",
     "eslint.config.mjs"
   ],
-  "include": ["entrypoints/**/*.ts", "entrypoints/**/*.tsx", ".wxt/wxt.d.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", ".wxt/wxt.d.ts"]
 }
