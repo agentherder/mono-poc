@@ -8,7 +8,8 @@
       "options": {
         "command": "pnpm dev",
         "cwd": "apps/extension"
-      }
+      },
+      "continuous": true
     },
     "build": {
       "executor": "nx:run-commands",

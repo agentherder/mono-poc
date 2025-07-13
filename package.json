@@ -2,7 +2,9 @@
   "name": "@agentherder-mono-poc/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "nx run-many --target=dev --projects=web,extension"
+  },
   "private": true,
   "dependencies": {
     "@react-router/node": "^7.2.0",
