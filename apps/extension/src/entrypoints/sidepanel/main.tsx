@@ -7,6 +7,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <div>Hello popup!</div>
+    <div>Hello sidepanel!</div>
   </StrictMode>
 );
