@@ -1,82 +1,154 @@
-# AgentherderMonoPoc
+# AgentHerder Monorepo Proof-of-Concept
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+`agentherder/mono-poc` is an **early PoC** monorepo.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+1. `apps/web` – React + TypeScript SPA - [React Router v7 framework mode](https://reactrouter.com/start/framework/routing)
+2. `apps/extension` – React + TypeScript browser extension - [WXT](https://wxt.dev/guide/essentials/project-structure.html)
+3. `libs/shared` – Shared code imports - No build step
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+It is intended to prove the SPA and extension can share:
 
-## Finish your CI setup
+1. Basic React components and TS utilities
+2. Reactive DB state updates with server go-between
+3. Offline local-first reactive state with [`SharedWorker`](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker) go-between
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/2a0ovsJn20)
+Nx orchestrates every dev, build, test and CI task so that _one CLI_ works everywhere.
 
+---
 
-## Run tasks
+## Quick Start
 
-To run the dev server for your app, use:
+```bash
+# 1  Clone & install
+git clone https://github.com/your‑org/agentherder.git
+cd agentherder
+pnpm install
 
-```sh
-npx nx serve web
+# 2  Launch both apps in watch mode (web on :5173, extension re‑loads on change)
+pnpm dev
 ```
 
-To create a production bundle:
+> Under the hood that script calls
+> `nx run-many --target=dev --projects=web,extension`.
 
-```sh
-npx nx build web
+---
+
+## Repository Structure
+
+This is an [Nx](https://nx.dev) monorepo managed with `pnpm`. The structure is organized into applications (`apps`) and shared code (`libs`).
+
+```
+/
+├── apps/
+│   ├── web/                # React (Vite + RRv7) SPA for the main dashboard
+│   ├── web-e2e/            # Playwright E2E tests for the web app
+│   ├── extension/          # WXT (Vite) React browser extension for data capture
+│   └── extension-e2e/      # Playwright E2E tests for the extension
+│
+├── libs/
+│   └── shared/             # Shared React components, hooks, and utilities
+│
+├── nx.json                 # Nx workspace configuration
+├── package.json            # Root dependencies and scripts
+├── pnpm-workspace.yaml     # pnpm workspace definition
+└── tsconfig.base.json      # Base TypeScript configuration with path aliases
 ```
 
-To see all available targets to run for a project, run:
+---
 
-```sh
-npx nx show project web
+## Nx Target Cheat‑Sheet
+
+> Each project’s targets are discoverable with `nx show project <name>`.
+> The table below lists only the **opinionated defaults** we rely on in CI.
+
+| Task                 | Typical command                           | Description                                                              |
+| -------------------- | ----------------------------------------- | ------------------------------------------------------------------------ |
+| **Dev server**       | `nx dev web` · `nx dev extension`         | Hot‑reload web or run extension in watch mode                            |
+| **Production build** | `nx build web` · `nx build extension`     | Generates `/dist` for web and `apps/extension/.output` for the extension |
+| **Preview**          | `nx preview web`                          | Serves the built web SPA locally                                         |
+| **Unit tests**       | `nx test <project>`                       | Vitest with JSDOM                                                        |
+| **E2E tests**        | `nx e2e web-e2e` · `nx e2e extension-e2e` | Playwright; runs after `build` in CI                                     |
+| **Lint**             | `nx lint <project>`                       | ESLint (flat config) + Prettier compatibility                            |
+| **Format**           | `nx format:write` / `nx format:check`     | Prettier across the workspace                                            |
+| **Type‑check**       | `nx typecheck <project>`                  | `tsc --noEmit` using the project’s tsconfig                              |
+| **Sync TS refs**     | `nx g @nx/js:sync-project-refs`           | Regenerates `composite` projectReference blocks                          |
+| **Graph**            | `nx graph`                                | Visual graph of every dependency                                         |
+
+All targets accept `--watch` for continuous mode, and **Nx Affected** (`nx affected --target=<task>`) works out of the box for faster CI runs.
+
+---
+
+## App Specific Notes
+
+### `apps/web`
+
+- Uses **React Router v7 “framework mode”**—see [`react-router.config.ts`](apps/web/react-router.config.ts) and [`app/`](apps/web/app).
+- Built & served by **Vite 6**; SSR capable via `@react-router/node` + `@react-router/serve`.
+- TailwindCSS 3.x for styling, shadcn/ui for headless components.
+
+### `apps/extension`
+
+- Structured according to [WXT project‑structure](https://wxt.dev/guide/essentials/project-structure.html).
+  Main entry points live in `src/entrypoints/…`.
+- Dev & build scripts are proxied through Nx targets but can also be run directly:
+
+```bash
+# Inside apps/extension
+pnpm dev          # Chrome
+pnpm dev:firefox  # Firefox
+pnpm build        # Production (MV3)
+pnpm zip          # Create web‑store upload zip
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+---
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## TypeScript Monorepo Philosophy
 
-## Add new projects
+- **Project References** – Every package/app is `composite: true`; Nx keeps refs synced.
+- **Path Aliases** – Declared once in `tsconfig.base.json`; both Vite and WXT inherit automatically.
+- **Isolated Builds** – `nx build <lib>` emits declaration files and can be consumed by external repos.
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+For a deep dive see Nx docs:
 
-Use the plugin's generator to create new projects.
+- [Everything You Need to Know About TypeScript Project References](https://nx.dev/blog/typescript-project-references)
+- [Maintain TypeScript Monorepos](https://nx.dev/features/maintain-ts-monorepos)
 
-To generate a new application, use:
+---
 
-```sh
-npx nx g @nx/react:app demo
+## Continuous Integration
+
+CI is scaffolded but untested.
+
+- **GitHub Actions** (`.github/workflows/ci.yml`)
+
+  1. `pnpm install --frozen-lockfile`
+  2. `nx run-many -t lint test build e2e`
+  3. `nx fix-ci` to suggest flaky fixes
+
+- Playwright browsers are installed automatically.
+- Nx Cloud is pre‑wired—uncomment `nx start-ci-run …` to distribute tasks.
+
+---
+
+## Useful Commands For Humans *&* Bots
+
+```bash
+# Show every task Nx inferred or that we authored
+nx show project web
+
+# What will break if I edit shared/?
+nx affected:graph --base=main
 ```
 
-To generate a new library, use:
+---
 
-```sh
-npx nx g @nx/react:lib mylib
-```
+## Further Reading
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- **Nx & TypeScript**
+  - [A New Nx Experience for TS Monorepos](https://nx.dev/blog/new-nx-experience-for-typescript-monorepos)
+  - [Managing TypeScript Packages in Monorepos](https://nx.dev/blog/managing-ts-packages-in-monorepos)
+- **React Router v7**
+  - [Routing](https://reactrouter.com/start/framework/routing)
+  - [Route Modules](https://reactrouter.com/start/framework/route-module)
+- **WXT**
+  - [Entrypoints](https://wxt.dev/guide/essentials/entrypoints.html)
