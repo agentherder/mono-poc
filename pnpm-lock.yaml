@@ -27,6 +27,12 @@ importers:
         specifier: ^7.2.0
         version: 7.6.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
+      '@babel/core':
+        specifier: ^7.14.5
+        version: 7.28.0
+      '@babel/preset-react':
+        specifier: ^7.14.5
+        version: 7.27.1(@babel/core@7.28.0)
       '@eslint/js':
         specifier: ^9.8.0
         version: 9.31.0
@@ -205,6 +211,8 @@ importers:
         version: 19.0.0
 
   apps/web-e2e: {}
+
+  libs/shared: {}
 
 packages:
 
