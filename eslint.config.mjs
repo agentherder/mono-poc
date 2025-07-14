@@ -12,6 +12,8 @@ export default [
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
       '**/test-output',
+      '**/.wxt',
+      '**/.output',
     ],
   },
   {
@@ -21,7 +23,8 @@ export default [
         'error',
         {
           enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
+          // allow sharing from `libs/shared/src/*` via alias `$/*`
+          allow: ['$', '^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
             {
               sourceTag: '*',

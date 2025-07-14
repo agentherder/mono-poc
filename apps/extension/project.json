@@ -2,6 +2,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "extension",
   "root": "apps/extension",
+
   "targets": {
     "dev": {
       "executor": "nx:run-commands",
@@ -18,5 +19,6 @@
         "cwd": "apps/extension"
       }
     }
-  }
+  },
+  "dependencies": ["shared"]
 }

@@ -1,9 +1,12 @@
-import NxWelcome from './nx-welcome';
+import { Hello } from '@/hello';
+import { HelloShared } from '$/hello-shared';
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="@try-nx-react-router/web" />
+      <div>Hello web!</div>
+      <Hello />
+      <HelloShared />
     </div>
   );
 }

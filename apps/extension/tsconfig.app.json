@@ -11,8 +11,19 @@
       "@nx/react/typings/image.d.ts",
       "chrome"
     ],
-    "rootDir": "src"
+    "rootDir": "../../",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "$/*": ["../../libs/shared/src/*"]
+    }
   },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".wxt/wxt.d.ts",
+    "../../libs/shared/src/**/*"
+  ],
   "exclude": [
     ".output",
     ".wxt",
@@ -22,5 +33,5 @@
     "vitest.config.ts",
     "eslint.config.mjs"
   ],
-  "include": ["src/**/*.ts", "src/**/*.tsx", ".wxt/wxt.d.ts"]
+  "references": []
 }

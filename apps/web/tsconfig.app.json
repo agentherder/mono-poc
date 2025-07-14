@@ -9,8 +9,13 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "rootDir": "app",
-    "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo"
+    "rootDir": "../../",
+    "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./app/*"],
+      "$/*": ["../../libs/shared/src/*"]
+    }
   },
   "include": [
     "app/**/*.ts",
@@ -18,7 +23,8 @@
     "**/.server/**/*.ts",
     "**/.server/**/*.tsx",
     "**/.client/**/*.ts",
-    "**/.client/**/*.tsx"
+    "**/.client/**/*.tsx",
+    "../../libs/shared/src/**/*"
   ],
   "exclude": [
     "out-tsc",
@@ -28,5 +34,6 @@
     "src/**/*.spec.ts",
     "src/**/*.spec.tsx",
     "eslint.config.mjs"
-  ]
+  ],
+  "references": []
 }
