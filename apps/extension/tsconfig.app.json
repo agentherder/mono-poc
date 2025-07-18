@@ -22,16 +22,15 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     ".wxt/wxt.d.ts",
-    "../../libs/shared/src/**/*"
+    "../../libs/shared/src/**/*.ts",
+    "../../libs/shared/src/**/*.tsx"
   ],
   "exclude": [
     ".output",
     ".wxt",
     "src/**/*.spec.ts",
     "src/**/*.spec.tsx",
-    "vite.config.ts",
-    "vitest.config.ts",
-    "eslint.config.mjs"
-  ],
-  "references": []
+    "../../libs/shared/src/**/*.spec.ts",
+    "../../libs/shared/src/**/*.spec.tsx"
+  ]
 }

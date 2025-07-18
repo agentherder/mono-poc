@@ -13,13 +13,7 @@
     ],
     "jsx": "react-jsx"
   },
-  "include": [
-    "vite.config.ts",
-    "vitest.config.ts",
-    "src/entrypoints/**/*.spec.ts",
-    "src/entrypoints/**/*.spec.tsx",
-    "src/entrypoints/**/*.d.ts"
-  ],
+  "include": ["src/entrypoints/**/*.spec.ts", "src/entrypoints/**/*.spec.tsx"],
   "references": [
     {
       "path": "./tsconfig.app.json"
