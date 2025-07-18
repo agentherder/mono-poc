@@ -14,6 +14,7 @@ export default [
       '**/test-output',
       '**/.wxt',
       '**/.output',
+      '**/out-tsc',
     ],
   },
   {
