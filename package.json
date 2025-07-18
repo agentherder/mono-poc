@@ -3,7 +3,17 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nx run-many --target=dev --projects=web,extension"
+    "dev": "nx run-many --target=dev",
+    "build": "nx run-many --target=build --tui=false",
+    "test": "nx run-many --target=test --tui=false",
+    "e2e": "nx run-many --target=e2e --tui=false",
+    "typecheck": "nx run-many --target=typecheck --tui=false",
+    "lint": "nx run-many --target=lint --tui=false",
+    "format:check": "nx format:check",
+    "format:write": "nx format:write",
+    "check:quick": "nx run-many --targets=typecheck,lint --tui=false",
+    "check:full": "nx format:write && nx run-many --targets=typecheck,lint,build,test,e2e --tui=false",
+    "reset": "nx reset"
   },
   "private": true,
   "dependencies": {

@@ -56,25 +56,29 @@ This is an [Nx](https://nx.dev) monorepo managed with `pnpm`. The structure is o
 
 ---
 
-## Nx Target Cheat‑Sheet
+## Root Script Cheat Sheet
 
-> Each project’s targets are discoverable with `nx show project <name>`.
-> The table below lists only the **opinionated defaults** we rely on in CI.
+These are the **canonical commands** exposed in the monorepo root
+`package.json`. Each `pnpm <script>` triggers an `nx` command that targets
+all code across the monorepo.
 
-| Task                 | Typical command                           | Description                                                              |
-| -------------------- | ----------------------------------------- | ------------------------------------------------------------------------ |
-| **Dev server**       | `nx dev web` · `nx dev extension`         | Hot‑reload web or run extension in watch mode                            |
-| **Production build** | `nx build web` · `nx build extension`     | Generates `/dist` for web and `apps/extension/.output` for the extension |
-| **Preview**          | `nx preview web`                          | Serves the built web SPA locally                                         |
-| **Unit tests**       | `nx test <project>`                       | Vitest with JSDOM                                                        |
-| **E2E tests**        | `nx e2e web-e2e` · `nx e2e extension-e2e` | Playwright; runs after `build` in CI                                     |
-| **Lint**             | `nx lint <project>`                       | ESLint (flat config) + Prettier compatibility                            |
-| **Format**           | `nx format:write` / `nx format:check`     | Prettier across the workspace                                            |
-| **Type‑check**       | `nx typecheck <project>`                  | `tsc --noEmit` using the project’s tsconfig                              |
-| **Sync TS refs**     | `nx g @nx/js:sync-project-refs`           | Regenerates `composite` projectReference blocks                          |
-| **Graph**            | `nx graph`                                | Visual graph of every dependency                                         |
+| Shortcut            | Typical use case                                     |
+| ------------------- | ---------------------------------------------------- |
+| `pnpm dev`          | Interactive local development of all apps            |
+| `pnpm build`        | Produce production bundles / ensure compile          |
+| `pnpm test`         | Run all unit tests                                   |
+| `pnpm e2e`          | Run Playwright end‑to‑end suites                     |
+| `pnpm typecheck`    | Strict TypeScript checking across the workspace      |
+| `pnpm lint`         | ESLint + Prettier rules                              |
+| `pnpm format:write` | Auto‑format with Prettier                            |
+| `pnpm format:check` | Verify formatting without changing files             |
+| `pnpm check:quick`  | Fast compile‑and‑lint loop                           |
+| `pnpm check:full`   | One‑shot “CI‑grade” format + validate before pushing |
+| `pnpm reset`        | Clear the Nx task cache if results look incorrect    |
 
-All targets accept `--watch` for continuous mode, and **Nx Affected** (`nx affected --target=<task>`) works out of the box for faster CI runs.
+> **Note for AI agents:** The `pnpm check:quick` command is espescially useful
+> in a fast iteration loop. The `pnpm check:full` command is useful for a
+> final validation of work..
 
 ---
 
