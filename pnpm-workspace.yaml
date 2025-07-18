@@ -1,5 +1,8 @@
 packages:
-  - 'apps/*'
-  - 'libs/*'
+  - apps/*
+  - libs/*
+
 onlyBuiltDependencies:
-  - 'spawn-sync'
+  - '@swc/core'
+  - nx
+  - spawn-sync
