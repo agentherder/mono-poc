@@ -15,6 +15,7 @@ export default [
       '**/.wxt',
       '**/.output',
       '**/out-tsc',
+      '**/.nitro',
     ],
   },
   {
