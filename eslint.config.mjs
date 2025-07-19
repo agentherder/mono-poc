@@ -16,6 +16,7 @@ export default [
       '**/.output',
       '**/out-tsc',
       '**/.nitro',
+      '**/.wrangler',
     ],
   },
   {
