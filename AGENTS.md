@@ -10,7 +10,7 @@ all code across the monorepo.
 
 - `pnpm check` Fast iteration typecheck + lint
 - `pnpm validate` Final format + check + unit test before pushing
-- `pnpm pretest` Same as validate but no tests for TDD red phase
+- `pnpm tddred` Same as validate but no tests for TDD red phase
 
 ## Useful commands
 

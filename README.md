@@ -75,7 +75,7 @@ all code across the monorepo.
 | `pnpm format:write` | Auto‑format with Prettier                         |
 | `pnpm check`        | Fast iteration typecheck + lint                   |
 | `pnpm validate`     | Final format + check + unit test before pushing   |
-| `pnpm pretest`      | Same as validate but no tests for TDD red phase   |
+| `pnpm tddred`       | Same as validate but no tests for TDD red phase   |
 | `pnpm check:pr`     | Full install + check + e2e for PRs                |
 | `pnpm reset`        | Clear the Nx task cache if results look incorrect |
 

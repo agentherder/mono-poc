@@ -14,7 +14,7 @@
     "format:write": "nx format:write",
     "check": "nx run-many --targets=typecheck,lint",
     "validate": "nx format:write && nx run-many --targets=typecheck,lint,build,test",
-    "pretest": "nx format:write && nx run-many --targets=typecheck,lint,build",
+    "tddred": "nx format:write && nx run-many --targets=typecheck,lint,build",
     "check:pr": "pnpm install && pnpm validate && pnpm e2e",
     "reset": "nx reset"
   },
