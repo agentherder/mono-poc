@@ -3,6 +3,8 @@ packages:
   - libs/*
 
 onlyBuiltDependencies:
+  - '@parcel/watcher'
   - '@swc/core'
+  - esbuild
   - nx
   - spawn-sync
