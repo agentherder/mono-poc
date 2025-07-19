@@ -1,55 +1,35 @@
 # Agent Command Reference
 
-Agents should run every task **from the repository root** with  
-`pnpm <script‑name>`.  
-All scripts are declared in the root `package.json`, require no
-interactive input, and exit with a POSIX status code ( `0` success,  
-`1` failure, `130` SIGINT).
+Agents should run commands **from the repository root** with `pnpm <script‑name>`.
 
-> **One‑time prerequisite**
->
-> ```bash
-> pnpm install
-> ```
+These are the **canonical commands** exposed in the monorepo root
+`package.json`. Each `pnpm <script>` triggers an `nx` command that targets
+all code across the monorepo.
 
----
+## Useful combined checks for fast iteration
 
-## Fast iteration
+- `pnpm check` Fast iteration typecheck + lint
+- `pnpm prepare` Final format + check + unit test before pushing
+- `pnpm pretest` Same as prepare but no tests for TDD
 
-- `pnpm check:quick` – **Type check + Lint only.**  
-  Cheapest validation loop while editing code.
+## Useful commands
 
-- `pnpm typecheck` – Full `tsc --noEmit` across every project.
+- `pnpm build` Produce production bundles / ensure compile
+- `pnpm test` Run all unit tests
+- `pnpm typecheck` Strict TypeScript checking across the workspace
+- `pnpm lint` ESLint check
+- `pnpm lint:fix` Auto‑fix ESLint
+- `pnpm format:check` Verify formatting without changing files
+- `pnpm format:write` Auto‑format with Prettier
+- `pnpm reset` Clear the Nx task cache if results look incorrect
 
-- `pnpm lint` – ESLint (flat config) with Prettier rules.
+## AVOID in cloud containers
 
----
+End-to-end tests are heavy and often fail in cloud containers.
 
-## Full validation pipeline
+- `pnpm e2e` Run Playwright end‑to‑end suites
+- `pnpm pr` Full install + check + e2e for PRs
 
-- `pnpm build` – Compile every app and library (no TUI, no watch).
+## AVOID interactive
 
-- `pnpm test` – Unit tests (Vitest + JSDOM).
-
-- `pnpm e2e` – Playwright end‑to‑end suites.
-
-- `pnpm check:full` – **Canonical pre‑merge gate.**  
-  Runs, in order:  
-  `format:write → typecheck → lint → build → test → e2e`.
-
-- `pnpm reset` – Purge Nx’s task cache when results seem stale.
-
----
-
-## Formatting utilities
-
-- `pnpm format:write` – Prettier **write** mode (auto‑fix).
-
-- `pnpm format:check` – Prettier **check** mode (read‑only).
-
----
-
-## Local watch mode _(interactive)_
-
-- `pnpm dev` – Starts all applicable `nx dev` servers with the Nx TUI.  
-  **Skip in non‑interactive containers.**
+- `pnpm dev` Interactive local development of all apps

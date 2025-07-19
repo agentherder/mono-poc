@@ -62,23 +62,33 @@ These are the **canonical commands** exposed in the monorepo root
 `package.json`. Each `pnpm <script>` triggers an `nx` command that targets
 all code across the monorepo.
 
-| Shortcut            | Typical use case                                     |
-| ------------------- | ---------------------------------------------------- |
-| `pnpm dev`          | Interactive local development of all apps            |
-| `pnpm build`        | Produce production bundles / ensure compile          |
-| `pnpm test`         | Run all unit tests                                   |
-| `pnpm e2e`          | Run Playwright end‑to‑end suites                     |
-| `pnpm typecheck`    | Strict TypeScript checking across the workspace      |
-| `pnpm lint`         | ESLint + Prettier rules                              |
-| `pnpm format:write` | Auto‑format with Prettier                            |
-| `pnpm format:check` | Verify formatting without changing files             |
-| `pnpm check:quick`  | Fast compile‑and‑lint loop                           |
-| `pnpm check:full`   | One‑shot “CI‑grade” format + validate before pushing |
-| `pnpm reset`        | Clear the Nx task cache if results look incorrect    |
+| Shortcut            | Typical use case                                  |
+| ------------------- | ------------------------------------------------- |
+| `pnpm dev`          | Interactive local development of all apps         |
+| `pnpm build`        | Produce production bundles / ensure compile       |
+| `pnpm test`         | Run all unit tests                                |
+| `pnpm e2e`          | Run Playwright end‑to‑end suites                  |
+| `pnpm typecheck`    | Strict TypeScript checking across the workspace   |
+| `pnpm lint`         | ESLint check                                      |
+| `pnpm lint:fix`     | Auto‑fix ESLint                                   |
+| `pnpm format:check` | Verify formatting without changing files          |
+| `pnpm format:write` | Auto‑format with Prettier                         |
+| `pnpm check`        | Fast iteration typecheck + lint                   |
+| `pnpm prepare`      | Final format + check + unit test before pushing   |
+| `pnpm pretest`      | Same as prepare but no tests for TDD              |
+| `pnpm pr`           | Full install + check + e2e for PRs                |
+| `pnpm reset`        | Clear the Nx task cache if results look incorrect |
 
-> **Note for AI agents:** The `pnpm check:quick` command is espescially useful
-> in a fast iteration loop. The `pnpm check:full` command is useful for a
-> final validation of work..
+> **Note for AI agents:**
+>
+> - USEFUL:
+>   - Fast iteration: `pnpm check`
+>   - Final validation: `pnpm prepare`
+>   - Checks or tests are unexpectedly skipped: `pnpm reset`
+> - AVOID:
+>   - Interactive watcher: `pnpm dev`
+> - AVOID in cloud containers:
+>   - Heavy E2E tests: `pnpm e2e`, `pnpm pr`
 
 ---
 
