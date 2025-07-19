@@ -17,7 +17,11 @@ export default defineConfig(() => ({
   },
   plugins: [
     tsConfigPaths({ projects: ['./tsconfig.json'] }),
-    tanstackStart({ target: 'vercel', customViteReactPlugin: true }),
+    tanstackStart({
+      target: 'cloudflare-pages',
+      spa: { enabled: true },
+      customViteReactPlugin: true,
+    }),
     viteReact(),
   ],
   // Uncomment this if you are using workers.
