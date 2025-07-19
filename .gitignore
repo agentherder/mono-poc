@@ -4,8 +4,7 @@
 dist
 tmp
 out-tsc
-tsconfig.tsbuildinfo
-tsconfig.*.tsbuildinfo
+*.tsbuildinfo
 
 # dependencies
 node_modules

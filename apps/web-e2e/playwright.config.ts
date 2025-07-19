@@ -24,8 +24,8 @@ export default defineConfig({
   },
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'PORT=4200 pnpm nx preview web',
-    url: 'http://localhost:4200',
+    command: 'pnpm nx preview web',
+    url: 'http://localhost:8787',
     reuseExistingServer: true,
     cwd: workspaceRoot,
   },

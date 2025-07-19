@@ -3,5 +3,6 @@ main = ".output/server/index.mjs"
 compatibility_date = "2025-07-19"
 compatibility_flags = ["nodejs_compat"]
 
-[site]
-bucket = ".output/public"
+[assets]
+directory = "./.output/public/"
+binding = "ASSETS"
