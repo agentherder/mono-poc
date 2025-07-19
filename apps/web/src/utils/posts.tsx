@@ -12,7 +12,7 @@ export const fetchPost = createServerFn()
   .handler(async ({ data }) => {
     console.info(`Fetching post with id ${data}...`);
     const res = await fetch(
-      `https://jsonplaceholder.typicode.com/posts/${data}`
+      `https://jsonplaceholder.typicode.com/posts/${data}`,
     );
     if (!res.ok) {
       if (res.status === 404) {

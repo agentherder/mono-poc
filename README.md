@@ -134,7 +134,6 @@ For a deep dive see Nx docs:
 CI is scaffolded but untested.
 
 - **GitHub Actions** (`.github/workflows/ci.yml`)
-
   1. `pnpm install --frozen-lockfile`
   2. `nx run-many -t lint test build e2e`
   3. `nx fix-ci` to suggest flaky fixes
