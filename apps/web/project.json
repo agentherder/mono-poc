@@ -11,6 +11,14 @@
         "command": "pnpm wrangler dev",
         "cwd": "apps/web"
       }
+    },
+    "deploy": {
+      "dependsOn": ["build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm wrangler deploy",
+        "cwd": "apps/web"
+      }
     }
   }
 }
