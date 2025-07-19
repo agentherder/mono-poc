@@ -1,4 +1,7 @@
-name = "agentherder-web"
-pages_build_output_dir = "./dist"
+name = "web"
+main = ".output/server/index.mjs"
 compatibility_date = "2025-07-19"
 compatibility_flags = ["nodejs_compat"]
+
+[site]
+bucket = ".output/public"

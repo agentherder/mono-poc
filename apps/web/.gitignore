@@ -4,6 +4,7 @@
 .vercel
 .output
 .nitro
+.wrangler
 /build/
 /api/
 /server/build
