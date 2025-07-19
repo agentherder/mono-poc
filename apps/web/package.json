@@ -1,5 +1,12 @@
 {
   "name": "@agentherder-mono-poc/web",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build && tsc --noEmit",
+    "start": "node .output/server/index.mjs"
+  }
 }

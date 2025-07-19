@@ -1,6 +1,8 @@
 /// <reference types='vitest' />
+import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import tsConfigPaths from 'vite-tsconfig-paths';
+import viteReact from '@vitejs/plugin-react';
 
 export default defineConfig(() => ({
   root: __dirname,
@@ -13,7 +15,11 @@ export default defineConfig(() => ({
     port: 4200,
     host: 'localhost',
   },
-  plugins: [react()],
+  plugins: [
+    tsConfigPaths({ projects: ['./tsconfig.json'] }),
+    tanstackStart({ customViteReactPlugin: true }),
+    viteReact(),
+  ],
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [ nxViteTsPaths() ],
