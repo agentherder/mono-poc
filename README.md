@@ -2,9 +2,9 @@
 
 `agentherder/mono-poc` is an **early PoC** monorepo.
 
-1. `apps/web` – React + TypeScript SPA - [React Router v7 framework mode](https://reactrouter.com/start/framework/routing)
-2. `apps/extension` – React + TypeScript browser extension - [WXT](https://wxt.dev/guide/essentials/project-structure.html)
-3. `libs/shared` – Shared code imports - No build step
+1. `apps/web` – React + TypeScript SPA: [TanStack Start SPA mode](https://tanstack.com/start/latest/docs/framework/react/spa-mode)
+2. `apps/extension` – React + TypeScript browser extension: [WXT](https://wxt.dev/guide/essentials/project-structure.html)
+3. `libs/shared` – Shared code imports: No build step
 
 It is intended to prove the SPA and extension can share:
 
@@ -40,7 +40,7 @@ This is an [Nx](https://nx.dev) monorepo managed with `pnpm`. The structure is o
 ```
 /
 ├── apps/
-│   ├── web/                # React (Vite + RRv7) SPA for the main dashboard
+│   ├── web/                # React Tanstack Start SPA for the main dashboard
 │   ├── web-e2e/            # Playwright E2E tests for the web app
 │   ├── extension/          # WXT (Vite) React browser extension for data capture
 │   └── extension-e2e/      # Playwright E2E tests for the extension
@@ -92,30 +92,6 @@ all code across the monorepo.
 
 ---
 
-## App Specific Notes
-
-### `apps/web`
-
-- Uses **React Router v7 “framework mode”**—see [`react-router.config.ts`](apps/web/react-router.config.ts) and [`app/`](apps/web/app).
-- Built & served by **Vite 6**; SSR capable via `@react-router/node` + `@react-router/serve`.
-- TailwindCSS 3.x for styling, shadcn/ui for headless components.
-
-### `apps/extension`
-
-- Structured according to [WXT project‑structure](https://wxt.dev/guide/essentials/project-structure.html).
-  Main entry points live in `src/entrypoints/…`.
-- Dev & build scripts are proxied through Nx targets but can also be run directly:
-
-```bash
-# Inside apps/extension
-pnpm dev          # Chrome
-pnpm dev:firefox  # Firefox
-pnpm build        # Production (MV3)
-pnpm zip          # Create web‑store upload zip
-```
-
----
-
 ## TypeScript Monorepo Philosophy
 
 - **Project References** – Every package/app is `composite: true`; Nx keeps refs synced.
@@ -140,28 +116,3 @@ CI is scaffolded but untested.
 
 - Playwright browsers are installed automatically.
 - Nx Cloud is pre‑wired—uncomment `nx start-ci-run …` to distribute tasks.
-
----
-
-## Useful Commands For Humans *&* Bots
-
-```bash
-# Show every task Nx inferred or that we authored
-nx show project web
-
-# What will break if I edit shared/?
-nx affected:graph --base=main
-```
-
----
-
-## Further Reading
-
-- **Nx & TypeScript**
-  - [A New Nx Experience for TS Monorepos](https://nx.dev/blog/new-nx-experience-for-typescript-monorepos)
-  - [Managing TypeScript Packages in Monorepos](https://nx.dev/blog/managing-ts-packages-in-monorepos)
-- **React Router v7**
-  - [Routing](https://reactrouter.com/start/framework/routing)
-  - [Route Modules](https://reactrouter.com/start/framework/route-module)
-- **WXT**
-  - [Entrypoints](https://wxt.dev/guide/essentials/entrypoints.html)
