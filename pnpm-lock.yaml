@@ -176,6 +176,10 @@ importers:
 
   apps/extension-e2e: {}
 
+  apps/web: {}
+
+  apps/web-e2e: {}
+
   libs/shared: {}
 
 packages:
