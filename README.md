@@ -74,17 +74,17 @@ all code across the monorepo.
 | `pnpm format:check` | Verify formatting without changing files          |
 | `pnpm format:write` | Auto‑format with Prettier                         |
 | `pnpm check`        | Fast iteration typecheck + lint                   |
-| `pnpm prepare`      | Final format + check + unit test before pushing   |
-| `pnpm pretest`      | Same as prepare but no tests for TDD              |
-| `pnpm pr`           | Full install + check + e2e for PRs                |
+| `pnpm validate`     | Final format + check + unit test before pushing   |
+| `pnpm pretest`      | Same as validate but no tests for TDD red phase   |
+| `pnpm check:pr`     | Full install + check + e2e for PRs                |
 | `pnpm reset`        | Clear the Nx task cache if results look incorrect |
 
 > **Note for AI agents:**
 >
 > - USEFUL:
 >   - Fast iteration: `pnpm check`
->   - Final validation: `pnpm prepare`
->   - Checks or tests are unexpectedly skipped: `pnpm reset`
+>   - Final validation: `pnpm validate`
+>   - Fix checks or tests are unexpectedly skipping: `pnpm reset`
 > - AVOID:
 >   - Interactive watcher: `pnpm dev`
 > - AVOID in cloud containers:

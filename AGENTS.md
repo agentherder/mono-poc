@@ -9,8 +9,8 @@ all code across the monorepo.
 ## Useful combined checks for fast iteration
 
 - `pnpm check` Fast iteration typecheck + lint
-- `pnpm prepare` Final format + check + unit test before pushing
-- `pnpm pretest` Same as prepare but no tests for TDD
+- `pnpm validate` Final format + check + unit test before pushing
+- `pnpm pretest` Same as validate but no tests for TDD red phase
 
 ## Useful commands
 
@@ -28,7 +28,7 @@ all code across the monorepo.
 End-to-end tests are heavy and often fail in cloud containers.
 
 - `pnpm e2e` Run Playwright end‑to‑end suites
-- `pnpm pr` Full install + check + e2e for PRs
+- `pnpm check:pr` Full install + check + e2e for PRs
 
 ## AVOID interactive
 

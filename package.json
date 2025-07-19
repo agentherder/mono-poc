@@ -13,9 +13,9 @@
     "format:check": "nx format:check",
     "format:write": "nx format:write",
     "check": "nx run-many --targets=typecheck,lint --tui=false",
-    "prepare": "nx format:write && nx run-many --targets=typecheck,lint,build,test --tui=false",
+    "validate": "nx format:write && nx run-many --targets=typecheck,lint,build,test --tui=false",
     "pretest": "nx format:write && nx run-many --targets=typecheck,lint,build --tui=false",
-    "pr": "pnpm install && pnpm prepare && pnpm e2e",
+    "check:pr": "pnpm install && pnpm validate && pnpm e2e",
     "reset": "nx reset"
   },
   "private": true,
