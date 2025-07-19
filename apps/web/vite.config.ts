@@ -17,7 +17,7 @@ export default defineConfig(() => ({
   },
   plugins: [
     tsConfigPaths({ projects: ['./tsconfig.json'] }),
-    tanstackStart({ customViteReactPlugin: true }),
+    tanstackStart({ target: 'vercel', customViteReactPlugin: true }),
     viteReact(),
   ],
   // Uncomment this if you are using workers.
