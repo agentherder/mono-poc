@@ -28,3 +28,13 @@
 
 !apps/extension/.output
 !apps/extension/.wxt
+
+# Dependency lock files
+package-lock.json
+pnpm-lock.yaml
+
+# TanStack Stack build artifacts
+**/.nitro/
+**/.output/
+**/.tanstack/
+**/.wrangler/
