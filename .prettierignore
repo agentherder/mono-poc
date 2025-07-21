@@ -3,6 +3,10 @@
 ## pnpm
 pnpm-lock.yaml
 
+# Nx
+/.nx/cache
+/.nx/workspace-data
+
 # TanStack Start
 **/public
 routeTree.gen.ts
