@@ -15,8 +15,7 @@
     "check": "nx run-many --targets=typecheck,lint",
     "validate": "nx format:write && nx run-many --targets=typecheck,lint,build,test",
     "tddred": "nx format:write && nx run-many --targets=typecheck,lint,build",
-    "check:pr": "pnpm install && pnpm validate && pnpm e2e",
-    "reset": "nx reset"
+    "check:pr": "pnpm install && pnpm validate && pnpm e2e"
   },
   "private": true,
   "dependencies": {
