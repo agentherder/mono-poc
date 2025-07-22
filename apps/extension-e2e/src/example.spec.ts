@@ -1,7 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 
-// WXT is not yet set up for E2E testing so this is just a test scaffold
-test('basic test', async ({ page }) => {
-  await page.goto('https://example.com');
-  expect(await page.title()).toContain('Example');
+test('popup loads correctly', async ({ page, extensionId }) => {
+  await page.goto(`chrome-extension://${extensionId}/popup.html`);
+  await expect(page.getByText('Hello popup!')).toBeVisible();
+  await expect(page.getByText('Hello extension component!')).toBeVisible();
+  await expect(page.getByText('Hello shared component!')).toBeVisible();
 });
