@@ -1,0 +1,16 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "extension-e2e",
+  "projectType": "application",
+  "sourceRoot": "apps/extension-e2e/src",
+  "implicitDependencies": ["extension"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/playwright:playwright",
+      "dependsOn": [{ "target": "build", "projects": "dependencies" }],
+      "options": {
+        "config": "apps/extension-e2e/playwright.config.ts"
+      }
+    }
+  }
+}
