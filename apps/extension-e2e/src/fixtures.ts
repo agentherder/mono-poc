@@ -1,7 +1,7 @@
 import { test as base, chromium, type BrowserContext } from '@playwright/test';
-import { resolve } from 'path';
 import { createHash } from 'crypto';
 import { realpathSync } from 'fs';
+import { resolve } from 'path';
 
 const pathToExtension = resolve(
   __dirname,

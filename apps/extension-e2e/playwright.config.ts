@@ -1,20 +1,12 @@
+import { nxE2EPreset } from '@nx/playwright/preset';
 import { defineConfig, devices } from '@playwright/test';
-
 export default defineConfig({
-  testDir: './src',
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  ...nxE2EPreset(__filename, { testDir: './src' }),
   use: { trace: 'on-first-retry' },
   projects: [
     {
       name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-        channel: 'chromium',
-        headless: true,
-      },
+      use: { ...devices['Desktop Chrome'] },
     },
   ],
 });
