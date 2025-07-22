@@ -2,6 +2,7 @@
   "name": "@agentherder-mono-poc/source",
   "version": "0.0.0",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "nx run-many --target=dev",
     "build": "nx run-many --target=build",
@@ -17,7 +18,6 @@
     "tddred": "nx format:write && nx run-many --targets=typecheck,lint,build",
     "check:pr": "pnpm install && pnpm validate && pnpm e2e"
   },
-  "private": true,
   "dependencies": {
     "@react-router/node": "^7.7.0",
     "@react-router/serve": "^7.7.0",
