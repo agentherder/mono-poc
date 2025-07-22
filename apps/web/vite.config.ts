@@ -19,7 +19,7 @@ export default defineConfig(() => ({
     tsConfigPaths({ projects: ['./tsconfig.json'] }),
     tanstackStart({
       target: 'vercel',
-      spa: { enabled: true },
+      // spa: { enabled: true },
       customViteReactPlugin: true,
     }),
     viteReact(),
