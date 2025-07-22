@@ -1,8 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 import { nxE2EPreset } from '@nx/playwright/preset';
 
-// For CI, you may want to set BASE_URL to the deployed application.
-const baseURL = process.env['BASE_URL'] || 'http://localhost:4200';
+// No base URL is needed when testing extensions
+const baseURL = '';
 
 /**
  * Read environment variables from file.
@@ -20,30 +20,23 @@ export default defineConfig({
     baseURL,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    headless: false,
   },
-  /* Run your local dev server before starting the tests */
-  // TODO: Fix local web server when setting up WXT for E2E testing
-  // webServer: {
-  //   command: 'pnpm exec nx run extension:preview',
-  //   url: 'http://localhost:4200',
-  //   reuseExistingServer: true,
-  //   cwd: workspaceRoot,
-  // },
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
     // Uncomment for mobile browsers support
     /* {
