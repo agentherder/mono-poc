@@ -18,8 +18,8 @@ export default defineConfig(() => ({
   plugins: [
     tsConfigPaths({ projects: ['./tsconfig.json'] }),
     tanstackStart({
-      // target: 'cloudflare-module',
-      // spa: { enabled: true },
+      target: 'vercel',
+      spa: { enabled: true },
       customViteReactPlugin: true,
     }),
     viteReact(),
