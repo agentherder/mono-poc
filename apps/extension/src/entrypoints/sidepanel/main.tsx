@@ -3,14 +3,15 @@ import * as ReactDOM from 'react-dom/client';
 import { toggleSidePanel } from '../../utils/sidepanel';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root') as HTMLElement,
 );
 
 root.render(
   <StrictMode>
     <div className="flex flex-col gap-4 p-4">
-      <div>Hello popup!</div>
+      {/* Changed this text to be specific to the side panel */}
+      <div>Hello from the side panel!</div>
       <button onClick={toggleSidePanel}>Toggle Sidepanel</button>
     </div>
-  </StrictMode>
+  </StrictMode>,
 );
