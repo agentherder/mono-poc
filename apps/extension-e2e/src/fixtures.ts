@@ -12,7 +12,8 @@ export const test = base.extend<{
   context: BrowserContext;
   extensionId: string;
 }>({
-  context: async (_, use) => {
+  // eslint-disable-next-line no-empty-pattern
+  context: async ({}, use) => {
     const context = await chromium.launchPersistentContext('', {
       channel: 'chromium',
       headless: true,
@@ -24,10 +25,13 @@ export const test = base.extend<{
     await use(context);
     await context.close();
   },
-
-  extensionId: async (_, use) => {
+  // eslint-disable-next-line no-empty-pattern
+  extensionId: async ({}, use) => {
     const realPath = realpathSync(pathToExtension);
-    const hex = createHash('sha256').update(realPath).digest('hex').slice(0, 32);
+    const hex = createHash('sha256')
+      .update(realPath)
+      .digest('hex')
+      .slice(0, 32);
     const alphabet = 'abcdefghijklmnop';
     const id = [...hex].map((c) => alphabet[parseInt(c, 16)]).join('');
     await use(id);
