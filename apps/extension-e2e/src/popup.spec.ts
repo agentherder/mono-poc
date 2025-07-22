@@ -8,7 +8,7 @@ test('Popup page should load and render correctly', async ({
 
   await expect(page.getByText('Hello popup!')).toBeVisible();
   await expect(page.getByText('Hello extension component!')).toBeVisible();
-  await expect(page.getByText('Hello from shared lib!')).toBeVisible();
+  await expect(page.getByText('Hello shared component!')).toBeVisible();
   await expect(
     page.getByRole('button', { name: 'Toggle Sidepanel' }),
   ).toBeVisible();
