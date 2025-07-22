@@ -6,6 +6,6 @@
 
   "assets": {
     "directory": "./.output/public/",
-    "binding": "ASSETS",
-  },
+    "binding": "ASSETS"
+  }
 }
