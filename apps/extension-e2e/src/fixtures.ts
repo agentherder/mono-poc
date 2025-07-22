@@ -1,5 +1,7 @@
 import { test as base, chromium, type BrowserContext } from '@playwright/test';
 import { resolve } from 'path';
+import { createHash } from 'crypto';
+import { realpathSync } from 'fs';
 
 const pathToExtension = resolve(
   __dirname,
@@ -13,7 +15,7 @@ export const test = base.extend<{
   context: async (_, use) => {
     const context = await chromium.launchPersistentContext('', {
       channel: 'chromium',
-      headless: false,
+      headless: true,
       args: [
         `--disable-extensions-except=${pathToExtension}`,
         `--load-extension=${pathToExtension}`,
@@ -23,12 +25,11 @@ export const test = base.extend<{
     await context.close();
   },
 
-  extensionId: async ({ context }, use) => {
-    let [serviceWorker] = context.serviceWorkers();
-    if (!serviceWorker) {
-      serviceWorker = await context.waitForEvent('serviceworker');
-    }
-    const id = new URL(serviceWorker.url()).host;
+  extensionId: async (_, use) => {
+    const realPath = realpathSync(pathToExtension);
+    const hex = createHash('sha256').update(realPath).digest('hex').slice(0, 32);
+    const alphabet = 'abcdefghijklmnop';
+    const id = [...hex].map((c) => alphabet[parseInt(c, 16)]).join('');
     await use(id);
   },
 });
