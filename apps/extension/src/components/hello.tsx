@@ -1,3 +1,3 @@
 export function Hello() {
-  return <div>Hello extension component!</div>;
+  return <div className="text-green-500">Hello extension component!</div>;
 }
