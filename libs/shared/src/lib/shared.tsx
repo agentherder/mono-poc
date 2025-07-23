@@ -1,5 +1,5 @@
 export function Shared() {
-  return <div>Hello shared!</div>;
+  return <div>Hello shared component!</div>;
 }
 
 export default Shared;

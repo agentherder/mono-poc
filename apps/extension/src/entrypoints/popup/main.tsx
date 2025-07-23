@@ -1,4 +1,4 @@
-import { HelloShared } from '$/hello-shared';
+import { Shared } from '$/lib/shared';
 import { Hello } from '@/components/hello';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
@@ -13,7 +13,7 @@ root.render(
     <div className="flex flex-col gap-4 p-4">
       <div>Hello popup!</div>
       <Hello />
-      <HelloShared />
+      <Shared />
       <button onClick={toggleSidePanel}>Toggle Sidepanel</button>
     </div>
   </StrictMode>,

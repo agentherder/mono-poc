@@ -6,6 +6,6 @@ test.describe('sidepanel', () => {
     await page.goto(`chrome-extension://${extensionId}/sidepanel.html`);
     await expect(page.getByText('Hello sidepanel!')).toBeVisible();
     await expect(page.getByText('Hello extension component!')).toBeVisible();
-    await expect(page.getByText('Hello shared')).toBeVisible();
+    await expect(page.getByText('Hello shared component!')).toBeVisible();
   });
 });
