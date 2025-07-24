@@ -1,9 +1,9 @@
-import { triplit } from '$/triplit/client';
-import { useState } from 'react';
 import { useQuery } from '@triplit/react';
+import React from 'react';
+import { triplit } from '../triplit/client';
 
 export function ConversationList() {
-  const [text, setText] = useState('');
+  const [text, setText] = React.useState('');
 
   const convQuery = useQuery(
     triplit,
@@ -29,7 +29,10 @@ export function ConversationList() {
           type="text"
           placeholder="Enter a title"
           value={text}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            // TODO: fix this weird type error workaround
+            setText((e.target as unknown as { value: string }).value)
+          }
         />
         <button type="submit" disabled={!text}>
           Create

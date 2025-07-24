@@ -1,5 +1,5 @@
 import { Shared } from '$/lib/shared';
-import { ConversationList } from '@/components/conversations';
+import { ConversationList } from '$/components/conversations';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({

@@ -1,3 +1,4 @@
+import { ConversationList } from '$/components/conversations';
 import { Shared } from '$/lib/shared';
 import { Hello } from '@/components/hello';
 import { StrictMode } from 'react';
@@ -15,6 +16,7 @@ root.render(
       <Hello />
       <Shared />
       <button onClick={toggleSidePanel}>Toggle Sidepanel</button>
+      <ConversationList />
     </div>
   </StrictMode>,
 );
