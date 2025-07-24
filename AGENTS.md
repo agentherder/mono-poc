@@ -28,7 +28,7 @@ The structure is organized into applications (`apps`) and shared code (`libs`).
 │   └── extension-e2e/      # Playwright E2E tests for the extension
 │
 ├── libs/
-│   └── shared/             # Shared React components, hooks, and utilities
+│   └── shared/             # Shared React components, hooks, and Triplit DB config
 │
 ├── nx.json                 # Nx workspace configuration
 ├── package.json            # Root dependencies and scripts
@@ -45,6 +45,7 @@ Each shortcut triggers an `nx` command that targets all `apps/` and `libs/` acro
 
 | Command             | Description                                     |
 | ------------------- | ----------------------------------------------- |
+| `pnpm dev`          | Interactive local development of all apps       |
 | `pnpm build`        | Produce production bundles / ensure compile     |
 | `pnpm test`         | Run all unit tests                              |
 | `pnpm e2e`          | Run Playwright end‑to‑end suites                |
@@ -57,6 +58,7 @@ Each shortcut triggers an `nx` command that targets all `apps/` and `libs/` acro
 | `pnpm validate`     | Final format + check + unit test before pushing |
 | `pnpm tddred`       | Same as validate but no tests for TDD red phase |
 | `pnpm check:pr`     | Full install + check + e2e for PRs              |
+| `pnpm db`           | Run Triplit CLI commands                        |
 
 ### Note for AI agents
 
@@ -88,3 +90,45 @@ For example:
 - `pnpm nx repair` Repair the Nx workspace
 - `pnpm nx help` Display help for all commands
 - `pnpm nx <command> --help` Display help for a specific command
+
+### Triplit Commands
+
+The Triplit schema is not stored where the Triplit CLI looks by default.
+
+`pnpm db <command>` is a shortcut for
+`pnpm exec triplit --schemaPath=libs/shared/src/triplit/schema.ts <command>`.
+
+- `pnpm db dev` Start local Triplit server
+- `pnpm db schema push` Push schema to Triplit server
+- `pnpm db help` Help for more Triplit CLI commands
+
+---
+
+## Tech Stack
+
+### Shared
+
+- [pnpm](https://pnpm.io/motivation) - Package manager
+- [Nx](https://nx.dev/getting-started/intro) - Monorepo manager
+- [React](https://react.dev/) - UI library
+- [TypeScript](https://www.typescriptlang.org/docs/) - Type checking
+- [Triplit](https://www.triplit.dev/docs) - Database
+- [TailwindCSS](https://tailwindcss.com/docs/installation/using-postcss) - UI styling
+- [Vitest](https://vitest.dev/guide/) - Unit tests
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - UI unit tests
+- [Playwright](https://playwright.dev/docs/intro) - End-to-end tests
+
+### Web app
+
+- [TanStack Start][https://reactrouter.com/home](https://tanstack.com/start/latest/docs/framework/react/overview) - Web app framework
+- [Vercel](https://vercel.com/docs) - Web app hosting
+
+### Browser extension
+
+- [WXT](https://wxt.dev/guide/installation.html) - Browser extension framework
+
+---
+
+## Continuous Integration
+
+CI in `.github/workflows/ci.yml` is scaffolded but untested.

@@ -23,7 +23,8 @@
     "src/**/*.tsx",
     ".wxt/wxt.d.ts",
     "../../libs/shared/src/**/*.ts",
-    "../../libs/shared/src/**/*.tsx"
+    "../../libs/shared/src/**/*.tsx",
+    "../web/src/components/conversations.tsx"
   ],
   "exclude": [
     ".output",

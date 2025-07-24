@@ -48,6 +48,11 @@ vite.config.*.timestamp*
 vitest.config.*.timestamp*
 test-output
 
+# Environment variables
+.env
+.env.*
+!.env.example
+
 # WXT
 .output
 stats.html
