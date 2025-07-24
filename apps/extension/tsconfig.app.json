@@ -4,13 +4,8 @@
     "outDir": "dist",
     "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
     "jsx": "react-jsx",
-    "lib": ["dom"],
-    "types": [
-      "node",
-      "@nx/react/typings/cssmodule.d.ts",
-      "@nx/react/typings/image.d.ts",
-      "chrome"
-    ],
+    "lib": ["dom", "dom.iterable"],
+    "types": ["node", "@nx/react/typings/image.d.ts", "vite/client", "chrome"],
     "rootDir": "../../",
     "baseUrl": ".",
     "paths": {

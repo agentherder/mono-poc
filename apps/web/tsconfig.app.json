@@ -5,13 +5,7 @@
     "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable"],
-    "resolveJsonModule": true,
-    "types": [
-      "node",
-      "@nx/react/typings/cssmodule.d.ts",
-      "@nx/react/typings/image.d.ts",
-      "vite/client"
-    ],
+    "types": ["node", "@nx/react/typings/image.d.ts", "vite/client"],
     "rootDir": "../../",
     "baseUrl": ".",
     "paths": {

@@ -2,23 +2,22 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
+    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable"],
     "types": [
       "node",
-      "@nx/react/typings/cssmodule.d.ts",
-      "@nx/react/typings/image.d.ts"
+      "@nx/react/typings/image.d.ts",
+      "vite/client",
+      "react",
+      "react-dom"
     ],
     "rootDir": "src",
-    "jsx": "react-jsx",
-    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
+    "baseUrl": ".",
+    "paths": {
+      "$/*": ["./src/*"]
+    }
   },
-  "exclude": [
-    "out-tsc",
-    "dist",
-    "**/*.spec.ts",
-    "**/*.spec.tsx",
-    "vite.config.ts",
-    "vitest.config.ts",
-    "eslint.config.ts"
-  ],
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["src/**/*.spec.ts", "src/**/*.spec.tsx"]
 }

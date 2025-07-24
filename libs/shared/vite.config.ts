@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import viteReact from '@vitejs/plugin-react';
+import tsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/libs/shared',
-  plugins: [react()],
+  plugins: [tsConfigPaths({ projects: ['./tsconfig.json'] }), viteReact()],
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [ nxViteTsPaths() ],
